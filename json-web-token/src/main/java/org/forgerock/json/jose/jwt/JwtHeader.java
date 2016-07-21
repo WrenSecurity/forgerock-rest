@@ -11,7 +11,7 @@
  * Header, with the fields enclosed by brackets [] replaced by your own identifying
  * information: "Portions copyright [year] [name of copyright owner]".
  *
- * Copyright 2013 ForgeRock AS.
+ * Copyright 2013-2015 ForgeRock AS.
  */
 
 package org.forgerock.json.jose.jwt;
@@ -191,6 +191,15 @@ public abstract class JwtHeader extends JWObject {
     @SuppressWarnings("unchecked")
     public <T> T getParameter(String key, Class<T> clazz) {
         return clazz.cast(getParameter(key));
+    }
+
+   /**
+    * Returns this JwtHeader's parameters.
+    *
+    * @return {@code Map} of this JwtHeader's parameters.
+    */
+    public Map<String, Object> getParameters() {
+        return getAll();
     }
 
     /**

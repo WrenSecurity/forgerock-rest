@@ -11,12 +11,13 @@
  * Header, with the fields enclosed by brackets [] replaced by your own identifying
  * information: "Portions copyright [year] [name of copyright owner]".
  *
- * Copyright 2013 ForgeRock AS.
+ * Copyright 2013-2016 ForgeRock AS.
  */
 
 package org.forgerock.json.jose.jws;
 
-import org.forgerock.json.jose.exceptions.JwsException;
+import java.security.Key;
+
 import org.forgerock.json.jose.jws.handlers.HmacSigningHandler;
 import org.forgerock.json.jose.jws.handlers.NOPSigningHandler;
 import org.forgerock.json.jose.jws.handlers.RSASigningHandler;
@@ -35,29 +36,15 @@ public class SigningManager {
 
     private final SignatureUtil signatureUtil = SignatureUtil.getInstance();
 
-    /**
-     * Gets the appropriate SigningHandler that can perform the required signing algorithm, as described by the given
-     * JwsAlgorithm.
-     *
-     * @param algorithm The JwsAlgorithm to get the SigningHandler for.
-     * @return The SigningHandler.
-     */
-    public SigningHandler getSigningHandler(JwsAlgorithm algorithm) {
+    public SigningHandler newNopSigningHandler() {
+        return new NOPSigningHandler();
+    }
 
-        switch (algorithm.getAlgorithmType()) {
-        case NONE: {
-            return new NOPSigningHandler();
-        }
-        case HMAC: {
-            return new HmacSigningHandler();
-        }
-        case RSA: {
-            return new RSASigningHandler(signatureUtil);
-        }
-        default: {
-            throw new JwsException("No Signing Handler for unknown signing algorithm type, "
-                    + algorithm.getAlgorithmType() + ".");
-        }
-        }
+    public SigningHandler newHmacSigningHandler(byte[] sharedSecret) {
+        return new HmacSigningHandler(sharedSecret);
+    }
+
+    public SigningHandler newRsaSigningHandler(Key key) {
+        return new RSASigningHandler(key, signatureUtil);
     }
 }

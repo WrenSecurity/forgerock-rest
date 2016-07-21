@@ -11,7 +11,7 @@
  * Header, with the fields enclosed by brackets [] replaced by your own identifying
  * information: "Portions copyright [year] [name of copyright owner]".
  *
- * Copyright 2013 ForgeRock AS.
+ * Copyright 2013-2016 ForgeRock AS.
  */
 
 package org.forgerock.json.jose.builders;
@@ -19,6 +19,7 @@ package org.forgerock.json.jose.builders;
 import org.forgerock.json.jose.jwe.EncryptedJwt;
 import org.forgerock.json.jose.jwe.JweHeader;
 import org.forgerock.json.jose.jws.JwsAlgorithm;
+import org.forgerock.json.jose.jws.handlers.SigningHandler;
 import org.forgerock.json.jose.jwt.JwtClaimsSet;
 
 import java.security.Key;
@@ -68,12 +69,12 @@ public class EncryptedJwtBuilder extends AbstractJwtBuilder {
      * Returns a SignedEncryptedJwtBuilder that will build a signed JWT with this builder's encrypted JWT as its
      * payload.
      *
-     * @param privateKey The private key to sign the JWT with.
+     * @param signingHandler The SigningHandler instance used to sign the JWS.
      * @param jwsAlgorithm The JwsAlgorithm to use when signing the JWT.
      * @return The SignedEncryptedJwtBuilder instance.
      */
-    public SignedEncryptedJwtBuilder sign(Key privateKey, JwsAlgorithm jwsAlgorithm) {
-        return new SignedEncryptedJwtBuilder(this, privateKey, jwsAlgorithm);
+    public SignedEncryptedJwtBuilder sign(SigningHandler signingHandler, JwsAlgorithm jwsAlgorithm) {
+        return new SignedEncryptedJwtBuilder(this, signingHandler, jwsAlgorithm);
     }
 
     /**

@@ -11,12 +11,14 @@
  * Header, with the fields enclosed by brackets [] replaced by your own identifying
  * information: "Portions copyright [year] [name of copyright owner]".
  *
- * Copyright 2013 ForgeRock AS.
+ * Copyright 2013-2016 ForgeRock AS.
  */
 
 package org.forgerock.json.jose.builders;
 
 import org.forgerock.json.jose.common.JwtReconstruction;
+import org.forgerock.json.jose.jws.handlers.NOPSigningHandler;
+import org.forgerock.json.jose.jws.handlers.SigningHandler;
 import org.forgerock.json.jose.jwt.Jwt;
 
 import java.security.Key;
@@ -36,17 +38,17 @@ public class JwtBuilderFactory {
      * @return The JwtBuilder instance that will build the plaintext JWT.
      */
     public SignedJwtBuilderImpl jwt() {
-        return new SignedJwtBuilderImpl(null);
+        return new SignedJwtBuilderImpl(new NOPSigningHandler());
     }
 
     /**
      * Creates a builder for building a signed JWT into a base64url UTF-8 encoded JWT string.
      *
-     * @param privateKey The private key that will be used to sign the JWT.
+     * @param signingHandler The SigningHandler instance used to sign the JWS.
      * @return The JwtBuilder instance that will build the signed JWT.
      */
-    public SignedJwtBuilderImpl jws(Key privateKey) {
-        return new SignedJwtBuilderImpl(privateKey);
+    public SignedJwtBuilderImpl jws(SigningHandler signingHandler) {
+        return new SignedJwtBuilderImpl(signingHandler);
     }
 
     /**

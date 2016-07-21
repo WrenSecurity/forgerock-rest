@@ -11,7 +11,7 @@
  * Header, with the fields enclosed by brackets [] replaced by your own identifying
  * information: "Portions copyright [year] [name of copyright owner]".
  *
- * Copyright 2013 ForgeRock AS.
+ * Copyright 2013-2016 ForgeRock AS.
  */
 
 package org.forgerock.json.jose.builders;
@@ -21,9 +21,8 @@ import org.forgerock.json.jose.jws.JwsAlgorithm;
 import org.forgerock.json.jose.jws.JwsHeader;
 import org.forgerock.json.jose.jws.SignedEncryptedJwt;
 import org.forgerock.json.jose.jws.SignedJwt;
+import org.forgerock.json.jose.jws.handlers.SigningHandler;
 import org.forgerock.json.jose.jwt.JwtType;
-
-import java.security.Key;
 
 /**
  * An implementation of a JwtBuilder that can build a JWT and encrypt it and nest it within another signed JWT,
@@ -35,7 +34,7 @@ import java.security.Key;
 public class SignedEncryptedJwtBuilder implements SignedJwtBuilder {
 
     private final EncryptedJwtBuilder encryptedJwtBuilder;
-    private final Key privateKey;
+    private final SigningHandler signingHandler;
     private final JwsAlgorithm jwsAlgorithm;
 
     /**
@@ -43,13 +42,13 @@ public class SignedEncryptedJwtBuilder implements SignedJwtBuilder {
      * Encrypted JWT, and the private key and JwsAlgorithm to sign the outer JWT.
      *
      * @param encryptedJwtBuilder The EncryptedJwtBuilder instance.
-     * @param privateKey The private key to sign the JWT with.
+     * @param signingHandler The SigningHandler instance used to sign the JWS.
      * @param jwsAlgorithm The JwsAlgorithm to use when signing the JWT.
      */
-    public SignedEncryptedJwtBuilder(EncryptedJwtBuilder encryptedJwtBuilder, Key privateKey,
+    public SignedEncryptedJwtBuilder(EncryptedJwtBuilder encryptedJwtBuilder, SigningHandler signingHandler,
             JwsAlgorithm jwsAlgorithm) {
         this.encryptedJwtBuilder = encryptedJwtBuilder;
-        this.privateKey = privateKey;
+        this.signingHandler = signingHandler;
         this.jwsAlgorithm = jwsAlgorithm;
     }
 
@@ -58,11 +57,11 @@ public class SignedEncryptedJwtBuilder implements SignedJwtBuilder {
      */
     @Override
     public SignedJwt asJwt() {
-        JwsHeader header = new JwsHeaderBuilder(new SignedJwtBuilderImpl(privateKey)).alg(jwsAlgorithm).build();
+        JwsHeader header = new JwsHeaderBuilder(new SignedJwtBuilderImpl(signingHandler)).alg(jwsAlgorithm).build();
         header.setType(JwtType.JWE);
         EncryptedJwt encryptedJwt = encryptedJwtBuilder.asJwt();
 
-        return new SignedEncryptedJwt(header, encryptedJwt, privateKey);
+        return new SignedEncryptedJwt(header, encryptedJwt, signingHandler);
     }
 
     /**

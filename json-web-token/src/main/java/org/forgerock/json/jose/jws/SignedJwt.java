@@ -11,7 +11,7 @@
  * Header, with the fields enclosed by brackets [] replaced by your own identifying
  * information: "Portions copyright [year] [name of copyright owner]".
  *
- * Copyright 2013 ForgeRock AS.
+ * Copyright 2013-2016 ForgeRock AS.
  */
 
 package org.forgerock.json.jose.jws;
@@ -22,8 +22,6 @@ import org.forgerock.json.jose.jwt.JwtClaimsSet;
 import org.forgerock.json.jose.jwt.Payload;
 import org.forgerock.json.jose.utils.Utils;
 import org.forgerock.util.encode.Base64url;
-
-import java.security.Key;
 
 /**
  * A JWS implementation of the <tt>Jwt</tt> interface.
@@ -38,12 +36,10 @@ import java.security.Key;
  */
 public class SignedJwt implements Jwt {
 
-    private final SigningManager signingManager = new SigningManager();
-
     private final JwsHeader header;
     private final Payload payload;
 
-    private final Key privateKey;
+    private final SigningHandler signingHandler;
 
     private final byte[] signingInput;
     private final byte[] signature;
@@ -55,12 +51,12 @@ public class SignedJwt implements Jwt {
      *
      * @param header The JwsHeader containing the header parameters of the JWS.
      * @param claimsSet The JwtClaimsSet containing the claims of the JWS.
-     * @param privateKey The private key to use to sign the JWS.
+     * @param signingHandler The SigningHandler instance used to sign the JWS.
      */
-    public SignedJwt(JwsHeader header, JwtClaimsSet claimsSet, Key privateKey) {
+    public SignedJwt(JwsHeader header, JwtClaimsSet claimsSet, SigningHandler signingHandler) {
         this.header = header;
         this.payload = claimsSet;
-        this.privateKey = privateKey;
+        this.signingHandler = signingHandler;
 
         this.signingInput = null;
         this.signature = null;
@@ -85,7 +81,7 @@ public class SignedJwt implements Jwt {
         this.signingInput = signingInput;
         this.signature = signature;
 
-        this.privateKey = null;
+        this.signingHandler = null;
     }
 
     /**
@@ -95,12 +91,12 @@ public class SignedJwt implements Jwt {
      *
      * @param header The JwsHeader containing the header parameters of the JWS.
      * @param nestedPayload The nested payload that will be the payload of this JWS.
-     * @param privateKey The private key to use to sign the JWS.
+     * @param signingHandler The SigningHandler instance used to sign the JWS.
      */
-    protected SignedJwt(JwsHeader header, Payload nestedPayload, Key privateKey) {
+    protected SignedJwt(JwsHeader header, Payload nestedPayload, SigningHandler signingHandler) {
         this.header = header;
         this.payload = nestedPayload;
-        this.privateKey = privateKey;
+        this.signingHandler = signingHandler;
 
         this.signingInput = null;
         this.signature = null;
@@ -125,7 +121,7 @@ public class SignedJwt implements Jwt {
         this.signingInput = signingInput;
         this.signature = signature;
 
-        this.privateKey = null;
+        this.signingHandler = null;
     }
 
     /**
@@ -168,8 +164,7 @@ public class SignedJwt implements Jwt {
 
         String signingInput = encodedHeader + "." + encodedClaims;
 
-        SigningHandler signingHandler = signingManager.getSigningHandler(header.getAlgorithm());
-        byte[] signature = signingHandler.sign(header.getAlgorithm(), privateKey, signingInput);
+        byte[] signature = signingHandler.sign(header.getAlgorithm(), signingInput);
 
         return signingInput + "." + Base64url.encode(signature);
     }
@@ -179,11 +174,10 @@ public class SignedJwt implements Jwt {
      * <p>
      * The same private key must be given here as was used to create the signature.
      *
-     * @param privateKey The private key used to sign the JWT.
+     * @param signingHandler The SigningHandler instance used to verify the JWS.
      * @return <code>true</code> if the signature matches the JWS Header and payload.
      */
-    public boolean verify(Key privateKey) {
-        SigningHandler signingHandler = signingManager.getSigningHandler(header.getAlgorithm());
-        return signingHandler.verify(header.getAlgorithm(), privateKey, signingInput, signature);
+    public boolean verify(SigningHandler signingHandler) {
+        return signingHandler.verify(header.getAlgorithm(), signingInput, signature);
     }
 }

@@ -11,7 +11,7 @@
  * Header, with the fields enclosed by brackets [] replaced by your own identifying
  * information: "Portions copyright [year] [name of copyright owner]".
  *
- * Copyright 2013 ForgeRock AS.
+ * Copyright 2013-2016 ForgeRock AS.
  */
 
 package org.forgerock.json.jose.jwe.handlers.encryption;
@@ -144,8 +144,8 @@ public class RSA15AES128CBCHS256EncryptionHandler extends AbstractEncryptionHand
                 + ciphertext.length + al.length;
         byte[] dataBytes = ByteBuffer.allocate(authenticationTagInputLength).put(additionalAuthenticatedData)
                 .put(initialisationVector).put(ciphertext).put(al).array();
-        SigningHandler signingHandler = signingManager.getSigningHandler(JwsAlgorithm.HS256);
-        byte[] hmac = signingHandler.sign(JwsAlgorithm.getJwsAlgorithm(macKey.getAlgorithm()), macKey,
+        SigningHandler signingHandler = signingManager.newHmacSigningHandler(macKey.getEncoded());
+        byte[] hmac = signingHandler.sign(JwsAlgorithm.getJwsAlgorithm(macKey.getAlgorithm()),
                 new String(dataBytes, Utils.CHARSET));
 
         byte[] authenticationTag = Arrays.copyOf(hmac, ENCRYPTION_METHOD.getKeyOffset());
@@ -193,8 +193,8 @@ public class RSA15AES128CBCHS256EncryptionHandler extends AbstractEncryptionHand
                 + ciphertext.length + al.length;
         byte[] dataBytes = ByteBuffer.allocate(authenticationTagInputLength).put(additionalAuthenticatedData)
                 .put(initialisationVector).put(ciphertext).put(al).array();
-        SigningHandler signingHandler = signingManager.getSigningHandler(JwsAlgorithm.HS256);
-        byte[] hmac = signingHandler.sign(JwsAlgorithm.getJwsAlgorithm(macKey.getAlgorithm()), macKey,
+        SigningHandler signingHandler = signingManager.newHmacSigningHandler(macKey.getEncoded());
+        byte[] hmac = signingHandler.sign(JwsAlgorithm.getJwsAlgorithm(macKey.getAlgorithm()),
                 new String(dataBytes, Utils.CHARSET));
 
         byte[] expectedAuthenticationTag = Arrays.copyOf(hmac, ENCRYPTION_METHOD.getKeyOffset());

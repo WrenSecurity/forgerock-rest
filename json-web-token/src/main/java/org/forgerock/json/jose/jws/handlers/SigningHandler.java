@@ -11,14 +11,12 @@
  * Header, with the fields enclosed by brackets [] replaced by your own identifying
  * information: "Portions copyright [year] [name of copyright owner]".
  *
- * Copyright 2013 ForgeRock AS.
+ * Copyright 2013-2016 ForgeRock AS.
  */
 
 package org.forgerock.json.jose.jws.handlers;
 
 import org.forgerock.json.jose.jws.JwsAlgorithm;
-
-import java.security.Key;
 
 /**
  * The interface for SigningHandlers for all the different signing algorithms.
@@ -35,11 +33,10 @@ public interface SigningHandler {
      * The signature is created using the given private key.
      *
      * @param algorithm The JwsAlgorithm defining the Java Cryptographic algorithm.
-     * @param privateKey The private key.
      * @param data The data to be signed.
      * @return A byte array of the signature.
      */
-    byte[] sign(JwsAlgorithm algorithm, Key privateKey, String data);
+    byte[] sign(JwsAlgorithm algorithm, String data);
 
     /**
      * Verifies that the given signature is valid for the given data.
@@ -48,10 +45,9 @@ public interface SigningHandler {
      * of the data to compare against the given signature to see if they are identical.
      *
      * @param algorithm The JwsAlgorithm defining the JavaCryptographic algorithm.
-     * @param privateKey The private key.
      * @param data The data that was signed.
      * @param signature The signature of the data.
      * @return <code>true</code> if the signature is a valid signature of the data.
      */
-    boolean verify(JwsAlgorithm algorithm, Key privateKey, byte[] data, byte[] signature);
+    boolean verify(JwsAlgorithm algorithm, byte[] data, byte[] signature);
 }

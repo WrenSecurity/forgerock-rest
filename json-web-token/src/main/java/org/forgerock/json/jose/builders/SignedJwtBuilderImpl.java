@@ -11,16 +11,15 @@
  * Header, with the fields enclosed by brackets [] replaced by your own identifying
  * information: "Portions copyright [year] [name of copyright owner]".
  *
- * Copyright 2013 ForgeRock AS.
+ * Copyright 2013-2016 ForgeRock AS.
  */
 
 package org.forgerock.json.jose.builders;
 
 import org.forgerock.json.jose.jws.JwsHeader;
 import org.forgerock.json.jose.jws.SignedJwt;
+import org.forgerock.json.jose.jws.handlers.SigningHandler;
 import org.forgerock.json.jose.jwt.JwtClaimsSet;
-
-import java.security.Key;
 
 /**
  * An implementation of a JwtBuilder that can build a JWT and sign it, resulting in a SignedJwt object.
@@ -30,15 +29,15 @@ import java.security.Key;
  */
 public class SignedJwtBuilderImpl extends AbstractJwtBuilder implements SignedJwtBuilder {
 
-    private final Key privateKey;
+    private final SigningHandler signingHandler;
 
     /**
      * Constructs a new SignedJwtBuilderImpl that will use the given private key to sign the JWT.
      *
-     * @param privateKey The private key to sign the JWT with.
+     * @param signingHandler The SigningHandler instance used to sign the JWS.
      */
-    public SignedJwtBuilderImpl(Key privateKey) {
-        this.privateKey = privateKey;
+    public SignedJwtBuilderImpl(SigningHandler signingHandler) {
+        this.signingHandler = signingHandler;
     }
 
     /**
@@ -79,7 +78,7 @@ public class SignedJwtBuilderImpl extends AbstractJwtBuilder implements SignedJw
         if (claimsSet == null) {
             claimsSet = new JwtClaimsSet();
         }
-        return new SignedJwt(header, claimsSet, privateKey);
+        return new SignedJwt(header, claimsSet, signingHandler);
     }
 
     /**

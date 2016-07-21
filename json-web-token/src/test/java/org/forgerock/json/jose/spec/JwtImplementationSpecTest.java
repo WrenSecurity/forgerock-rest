@@ -11,7 +11,7 @@
  * Header, with the fields enclosed by brackets [] replaced by your own identifying
  * information: "Portions copyright [year] [name of copyright owner]".
  *
- * Copyright 2013 ForgeRock AS.
+ * Copyright 2013-2016 ForgeRock AS.
  */
 
 package org.forgerock.json.jose.spec;
@@ -26,6 +26,7 @@ import org.forgerock.json.jose.jwe.EncryptionMethod;
 import org.forgerock.json.jose.jwe.JweAlgorithm;
 import org.forgerock.json.jose.jws.JwsAlgorithm;
 import org.forgerock.json.jose.jws.SignedJwt;
+import org.forgerock.json.jose.jws.SigningManager;
 import org.forgerock.json.jose.jwt.Jwt;
 import org.forgerock.json.jose.jwt.JwtClaimsSet;
 import org.forgerock.json.jose.jwt.JwtType;
@@ -498,9 +499,11 @@ public class JwtImplementationSpecTest {
 
         //Given
         JwtBuilderFactory jwtBuilderFactory = new JwtBuilderFactory();
+        SigningManager signingManager = new SigningManager();
 
         //When
-        String jwtString = jwtBuilderFactory.jws(KeysHelper.getRSAPrivateKey())
+        String jwtString = jwtBuilderFactory.jws(signingManager.newHmacSigningHandler(
+                KeysHelper.getRSAPrivateKey().getEncoded()))
                 .headers().alg(JwsAlgorithm.HS256).done()
                 .build();
 
@@ -536,11 +539,13 @@ public class JwtImplementationSpecTest {
 
         //Given
         JwtBuilderFactory jwtBuilderFactory = new JwtBuilderFactory();
+        SigningManager signingManager = new SigningManager();
 
         //When
         String jwtString = jwtBuilderFactory.jwe(KeysHelper.getRSAPublicKey())
                 .headers().alg(JweAlgorithm.RSAES_PKCS1_V1_5).enc(EncryptionMethod.A128CBC_HS256).done()
-                .sign(KeysHelper.getRSAPrivateKey(), JwsAlgorithm.HS256)
+                .sign(signingManager.newHmacSigningHandler(KeysHelper.getRSAPrivateKey().getEncoded()),
+                        JwsAlgorithm.HS256)
                 .build();
 
         //Then
@@ -603,9 +608,10 @@ public class JwtImplementationSpecTest {
                 + "eyAiYS12YWx1ZSI6ICJGb3JnZVJvY2sgT3BlbkFNIiB9."
                 + "A8Z4xSPTfobTUYwwBaAymm1Ovfe1T3oMG5W9zFkOC-o";
         SignedJwt signedJwt = reconstruction.reconstructJwt(originalJws, SignedJwt.class);
+        SigningManager signingManager = new SigningManager();
 
         //When
-        signedJwt.verify(keyPair.getPrivate());
+        signedJwt.verify(signingManager.newHmacSigningHandler(keyPair.getPrivate().getEncoded()));
 
         //Then
         assertThat(signedJwt.getClaimsSet().get("a-value").asString()).isEqualTo("ForgeRock OpenAM");
@@ -636,9 +642,10 @@ public class JwtImplementationSpecTest {
         String noSpaceJws = "eyJ0eXAiOiJqd3QiLCJhbGciOiJIUzI1NiIsImhlYWRlci1rZXkiOiJoZWFkZXItdmFsdWUifQ.eyJjbGFpbS1rZXk"
                 + "iOiJjbGFpbS12YWx1ZSJ9.UgppKz2ubXBQs_c8cX-8QUTGtZQyFcgCfBKOVleun_c";
         SignedJwt signedJwt = reconstruction.reconstructJwt(noSpaceJws, SignedJwt.class);
+        SigningManager signingManager = new SigningManager();
 
         //When
-        signedJwt.verify(keyPair.getPrivate());
+        signedJwt.verify(signingManager.newHmacSigningHandler(keyPair.getPrivate().getEncoded()));
 
         //Then
         assertThat(signedJwt.getHeader().get("header-key").asString()).isEqualTo("header-value");

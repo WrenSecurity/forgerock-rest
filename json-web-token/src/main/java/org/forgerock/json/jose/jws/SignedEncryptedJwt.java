@@ -11,12 +11,13 @@
  * Header, with the fields enclosed by brackets [] replaced by your own identifying
  * information: "Portions copyright [year] [name of copyright owner]".
  *
- * Copyright 2013 ForgeRock AS.
+ * Copyright 2013-2016 ForgeRock AS.
  */
 
 package org.forgerock.json.jose.jws;
 
 import org.forgerock.json.jose.jwe.EncryptedJwt;
+import org.forgerock.json.jose.jws.handlers.SigningHandler;
 import org.forgerock.json.jose.jwt.Jwt;
 import org.forgerock.json.jose.jwt.JwtClaimsSet;
 
@@ -40,10 +41,10 @@ public class SignedEncryptedJwt extends SignedJwt {
      *
      * @param header The JwsHeader containing the header parameters of the JWS.
      * @param nestedJwe The nested Encrypted JWT that will be the payload of this JWS.
-     * @param privateKey The private key to sue to sign the JWS.
+     * @param signingHandler The SigningHandler instance used to sign the JWS.
      */
-    public SignedEncryptedJwt(JwsHeader header, EncryptedJwt nestedJwe, Key privateKey) {
-        super(header, nestedJwe, privateKey);
+    public SignedEncryptedJwt(JwsHeader header, EncryptedJwt nestedJwe, SigningHandler signingHandler) {
+        super(header, nestedJwe, signingHandler);
     }
 
     /**

@@ -2,6 +2,7 @@
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
  * Copyright © 2011 ForgeRock AS. All rights reserved.
+ * Portions Copyright © 2017 Wren Security.
  *
  * The contents of this file are subject to the terms
  * of the Common Development and Distribution License
@@ -30,9 +31,11 @@ import java.util.Map;
 
 /**
  * The ObjectValidator is a sample implementation of how to use the validator.
- * <p/>
- * The validators was designed to keep in the memory or other cache and validate multiple instances.
- * This implementation creates a new {@link Validator} each time
+ *
+ * <p>The validators was designed to keep in the memory or other cache and validate multiple
+ * instances.
+ *
+ * <p>This implementation creates a new {@link Validator} each time
  * and uses the {@link FailFastErrorHandler} to validate the instance object.
  *
  * @author $author$
@@ -40,9 +43,9 @@ import java.util.Map;
  */
 public class ObjectValidator {
     /**
-     * Validate the given <code>node<code> against the <code>schema</code>
-     * <p/>
-     * This implementation is pessimistic and returns false if any exception was thrown.
+     * Validate the given <code>node</code> against the <code>schema</code>
+     *
+     * <p>This implementation is pessimistic and returns false if any exception was thrown.
      *
      * @param node   instance to validate
      * @param schema schema for validation

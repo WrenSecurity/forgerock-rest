@@ -2,6 +2,7 @@
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
  * Copyright © 2011-2013 ForgeRock AS. All rights reserved.
+ * Portions Copyright © 2017 Wren Security.
  *
  * The contents of this file are subject to the terms
  * of the Common Development and Distribution License
@@ -38,9 +39,10 @@ import static org.forgerock.json.schema.validator.Constants.*;
 
 /**
  * NumberTypeValidator applies all the constraints of a <code>number</code> type.
- * <p/>
+ *
+ * <p>
  * Sample JSON Schema:
- * </code>
+ * {@code
  * {
  * "type"             : "number",
  * "required"         : false,
@@ -55,7 +57,7 @@ import static org.forgerock.json.schema.validator.Constants.*;
  * 3
  * ]
  * }
- * </code>
+ * }
  *
  * @see <a href="http://tools.ietf.org/html/draft-zyp-json-schema-03#section-5.1">type</a>
  */

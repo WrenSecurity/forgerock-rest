@@ -12,6 +12,7 @@
  * information: "Portions copyright [year] [name of copyright owner]".
  *
  * Copyright 2013-2014 ForgeRock AS.
+ * Portions Copyright 2017 Wren Security.
  */
 package org.forgerock.json.resource;
 
@@ -33,6 +34,7 @@ import java.util.regex.Pattern;
  * 3.3</a>:
  *
  * <pre>
+ * {@code
  * path          = path-abempty    ; begins with "/" or is empty
  *                 / ...
  *
@@ -48,6 +50,7 @@ import java.util.regex.Pattern;
  * HEXDIG        =  DIGIT / "A" / "B" / "C" / "D" / "E" / "F"
  * ALPHA         =  %x41-5A / %x61-7A   ; A-Z / a-z
  * DIGIT         =  %x30-39             ; 0-9
+ * }
  * </pre>
  *
  * The empty resource name having zero path elements may be obtained by calling
@@ -482,7 +485,7 @@ public final class ResourceName implements Comparable<ResourceName>, Iterable<St
      *            top level element.
      * @return The path element at the specified position in this resource name.
      * @throws IndexOutOfBoundsException
-     *             If the index is out of range (index < 0 || index >= size()).
+     *             If the index is out of range {@code (index < 0 || index >= size())}.
      */
     public String get(final int index) {
         if (index < 0 || index >= size) {

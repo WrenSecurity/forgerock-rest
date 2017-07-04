@@ -12,6 +12,7 @@
  * information: "Portions copyright [year] [name of copyright owner]".
  *
  * Copyright 2013 ForgeRock AS.
+ * Portions Copyright 2017 Wren Security.
  */
 package org.forgerock.json.resource;
 
@@ -70,7 +71,7 @@ public final class Version implements Comparable<Version> {
     /**
      * Parses the string argument as a version. The string must be one of the
      * following forms:
-     * <p/>
+     *
      * <pre>
      * major
      * major.minor

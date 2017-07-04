@@ -2,6 +2,7 @@
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
  * Copyright © 2011 ForgeRock AS. All rights reserved.
+ * Portions Copyright © 2017 Wren Security.
  *
  * The contents of this file are subject to the terms
  * of the Common Development and Distribution License
@@ -24,13 +25,17 @@
  */
 /**
  * These classes are capable of validating the objects against the initially loaded schema.
- * <p/>
- * All class implements the abstract {@link Validator} class and has the {@link Validator#Validator(java.util.Map)}}
+ *
+ * <p>All classes implement the abstract
+ * {@link org.forgerock.json.schema.validator.validators.Validator}
+ * class and has the
+ * {@link org.forgerock.json.schema.validator.validators.Validator#Validator(java.util.Map, java.util.List)}}
  * constructor.
- * <p/>
- * Each class is responsible for validating one object type. See the mappings between the types and classes in the
+ *
+ * <p>Each class is responsible for validating one object type. See the mappings between the types and classes in the
  * this table.
  * <table>
+ *     <caption>Mapping of types to validation classes</caption>
  *     <tr>
  *         <td>string</td><td>{@link StringTypeValidator}</td>
  *     </tr>
@@ -59,9 +64,9 @@
  *         <td>Union Types</td><td>{@link UnionTypeValidator}</td>
  *     </tr>
  * </table>
- * <p/>
- * Other <a href="http://tools.ietf.org/html/draft-zyp-json-schema-03#section-5.1">type</a> values MAY be used
- * for custom purposes, but minimal validators of the specification implementation can allow any instance value
- * on unknown type values.
+ *
+ * <p>Other <a href="http://tools.ietf.org/html/draft-zyp-json-schema-03#section-5.1">type</a>
+ * values MAY be used for custom purposes, but minimal validators of the specification
+ * implementation can allow any instance value on unknown type values.
  */
 package org.forgerock.json.schema.validator.validators;

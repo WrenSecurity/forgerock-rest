@@ -12,6 +12,7 @@
  * information: "Portions copyright [year] [name of copyright owner]".
  *
  * Copyright 2013 ForgeRock Inc.
+ * Portions Copyright 2017 Wren Security.
  */
 package org.forgerock.json.resource;
 
@@ -511,7 +512,7 @@ public final class ResourceName implements Comparable<ResourceName>, Iterable<St
      *            top level element.
      * @return The path element at the specified position in this resource name.
      * @throws IndexOutOfBoundsException
-     *             If the index is out of range (index < 0 || index >= size()).
+     *             If the index is out of range {@code (index < 0 || index >= size())}.
      */
     public String get(final int index) {
         if (index < 0 || index >= size) {

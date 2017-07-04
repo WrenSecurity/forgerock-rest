@@ -2,6 +2,7 @@
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  * 
  * Copyright © 2011-2013 ForgeRock AS. All rights reserved.
+ * Portions Copyright © 2017 Wren Security.
  * 
  * The contents of this file are subject to the terms
  * of the Common Development and Distribution License
@@ -42,12 +43,11 @@ import static org.forgerock.json.schema.validator.Constants.*;
  * The instance value is valid if it is of the same validators as one of
  * the simple validators definitions, or valid by one of the schemas, in
  * the array.
- * <p/>
- * <p>
- * For example, a schema that defines if an instance can be a string or
+ *
+ * <p>For example, a schema that defines if an instance can be a string or
  * a number would be:</p>
- * <p/>
- * <code>{"type":["string","number"]}</code>
+ *
+ * <p>{@code {"type":["string","number"]} }
  *
  * @see <a href="http://tools.ietf.org/html/draft-zyp-json-schema-03#section-5.1">type</a>
  */

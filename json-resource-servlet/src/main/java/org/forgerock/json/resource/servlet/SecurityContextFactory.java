@@ -12,6 +12,7 @@
  * information: "Portions copyright [year] [name of copyright owner]".
  *
  * Copyright 2012 ForgeRock AS.
+ * Portions Copyright 2017 Wren Security.
  */
 package org.forgerock.json.resource.servlet;
 
@@ -56,6 +57,7 @@ import org.forgerock.json.resource.SecurityContext;
  * populate the attributes:
  *
  * <pre>
+ * {@code
  * public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
  *     // Authenticate the user.
  *     String authcid = getUserName(request);
@@ -71,6 +73,7 @@ import org.forgerock.json.resource.SecurityContext;
  *         request.setAttribute(ATTRIBUTE_AUTHCID, authcid);
  *         request.setAttribute(ATTRIBUTE_AUTHZID, authzid);
  *     }
+ * }
  * }
  * </pre>
  */

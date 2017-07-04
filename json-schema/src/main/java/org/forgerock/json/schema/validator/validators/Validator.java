@@ -2,6 +2,7 @@
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
  * Copyright © 2011-2013 ForgeRock AS. All rights reserved.
+ * Portions Copyright © 2017 Wren Security.
  *
  * The contents of this file are subject to the terms
  * of the Common Development and Distribution License
@@ -67,9 +68,8 @@ public abstract class Validator implements SimpleValidator<Object> {
 
     /**
      * Gets the valid JSONPath of the node or the given property.
-     * <p/>
-     * <p/>
-     * Combines the two parameter and generates a valid JSONPath with dot–notation.
+     *
+     * <p>Combines the two parameter and generates a valid JSONPath with dot–notation.
      * Simple type: $
      * Array type: $[0]
      * Object type: $.store.book[0].title

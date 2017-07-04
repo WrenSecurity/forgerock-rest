@@ -13,7 +13,6 @@
  *
  * Copyright 2013-2014 ForgeRock AS.
  */
-
 package org.forgerock.json.jose.jws.handlers;
 
 import org.forgerock.json.jose.exceptions.JwsSigningException;

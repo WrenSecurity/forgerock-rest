@@ -2,6 +2,7 @@
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
  * Copyright © 2011-2013 ForgeRock AS. All rights reserved.
+ * Portions Copyright © 2017 Wren Security.
  *
  * The contents of this file are subject to the terms
  * of the Common Development and Distribution License
@@ -39,7 +40,8 @@ import org.forgerock.json.schema.validator.exceptions.ValidationException;
 
 /**
  * ArrayTypeValidator applies all the constraints of a <code>array</code> type.
- * <p/>
+ *
+ * <p>
  * Sample JSON Schema:
  * <code>
  * {
@@ -79,8 +81,8 @@ public class ArrayTypeValidator extends Validator {
     /**
      * This attribute indicates that all items in an array instance MUST be
      * unique (contains no two identical values).
-     * <p/>
-     * Two instance are consider equal if they are both of the same validators
+     *
+     * <p>Two instance are consider equal if they are both of the same validators
      * and: are null; or are booleans/numbers/strings and have the same value; or
      * are arrays, contains the same number of items, and each item in
      * the array is equal to the corresponding item in the other array;

@@ -2,6 +2,7 @@
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  * 
  * Copyright © 2011 ForgeRock AS. All rights reserved.
+ * Portions Copyright © 2017 Wren Security.
  * 
  * The contents of this file are subject to the terms
  * of the Common Development and Distribution License
@@ -37,11 +38,13 @@ import org.forgerock.json.schema.validator.exceptions.SchemaException;
 public interface SimpleValidator<T> {
     /**
      * Validates the <code>node</code> value against the embedded schema object.
-     * <p/>
-     * The selected error handler defines the behaviour of the validator. The
-     * {@link org.forgerock.json.schema.validator.FailFastErrorHandler} throws exception at firs violation.
-     * Other customised {@link ErrorHandler} can collect all exceptions and after the validation the
-     * examination of the <code>handler</code> contains the final result.
+     *
+     * <p>The selected error handler defines the behaviour of the validator. The
+     * {@link org.forgerock.json.schema.validator.FailFastErrorHandler} throws exception at first
+     * violation.
+     *
+     * <p>Other customised {@link ErrorHandler} can collect all exceptions and after the validation
+     * the examination of the <code>handler</code> contains the final result.
      *
      * @param node      value to validate
      * @param at        JSONPath of the node. null means it's the root node

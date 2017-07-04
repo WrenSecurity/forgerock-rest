@@ -2,6 +2,7 @@
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  * 
  * Copyright © 2011 ForgeRock AS. All rights reserved.
+ * Portions Copyright © 2017 Wren Security.
  * 
  * The contents of this file are subject to the terms
  * of the Common Development and Distribution License
@@ -29,7 +30,7 @@ import org.forgerock.json.fluent.JsonPointer;
 
 /**
  * Encapsulate a JSON validator error.
- * <p/>
+ *
  * <p>This exception may include information for locating the error
  * in the original JSON document object.  Note that although the application
  * will receive a ValidationException as the argument to the handlers
@@ -37,7 +38,7 @@ import org.forgerock.json.fluent.JsonPointer;
  * the application is not actually required to throw the exception;
  * instead, it can simply read the information in it and take a
  * different action.</p>
- * <p/>
+ *
  * <p>Since this exception is a subclass of {@link SchemaException
  * SchemaException}, it inherits the ability to wrap another exception.</p>
  *

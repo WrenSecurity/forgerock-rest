@@ -2,6 +2,7 @@
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
  * Copyright © 2011 ForgeRock AS. All rights reserved.
+ * Portions Copyright © 2017 Wren Security.
  *
  * The contents of this file are subject to the terms
  * of the Common Development and Distribution License
@@ -37,8 +38,8 @@ import static org.forgerock.json.schema.validator.Constants.ERROR_MSG_ENUM_VIOLA
 /**
  * This class implements "enum" validation on all types of objects as defined in
  * the paragraph 5.19 of the JSON Schema specification.
- * <p/>
- * This implementation relies on the <code>equals</code> method.
+ *
+ * <p>This implementation relies on the <code>equals</code> method.
  *
  * @author $author$
  * @version $Revision$ $Date$

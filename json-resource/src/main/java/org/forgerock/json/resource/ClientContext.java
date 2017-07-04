@@ -12,6 +12,7 @@
  * information: "Portions copyright [year] [name of copyright owner]".
  *
  * Copyright 2014 ForgeRock AS.
+ * Portions Copyright 2017 Wren Security.
  */
 package org.forgerock.json.resource;
 

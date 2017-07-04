@@ -12,8 +12,8 @@
  * information: "Portions Copyrighted [year] [name of copyright owner]".
  *
  * Copyright © 2012-2014 ForgeRock AS. All rights reserved.
+ * Portions Copyright © 2017 Wren Security.
  */
-
 package org.forgerock.json.resource;
 
 import java.lang.reflect.Constructor;
@@ -34,8 +34,8 @@ import org.forgerock.json.fluent.JsonValue;
  * <li>a <b>public</b> constructor having the same declaration as
  * {@link #AbstractContext(JsonValue, PersistenceConfig)}</li>
  * <li>a <b>public</b> method having the same declaration as
- * {@link org.forgerock.json.resource.Context#toJsonValue()}</li> See the
- * documentation for more details.
+ * {@link org.forgerock.json.resource.Context#toJsonValue()}. See the
+ * documentation for more details.</li>
  * </ul>
  * <p>
  * Here is an example of the JSON representation of the core attributes of all

@@ -2,7 +2,8 @@
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  * 
  * Copyright © 2011-2013 ForgeRock AS. All rights reserved.
- * 
+ * Portions Copyright © 2017 Wren Security.
+ *
  * The contents of this file are subject to the terms
  * of the Common Development and Distribution License
  * (the License). You may not use this file except in
@@ -35,14 +36,16 @@ import static org.forgerock.json.schema.validator.Constants.*;
 
 /**
  * AnyTypeValidator applies all the constraints of a <code>any</code> type.
- * <p/>
+ *
+ * <p>
  * Sample JSON Schema:
- * </code>
+ * {@code
  * {
  * "type"             : "any",
  * "required"         : false
  * }
- * </code>
+ * }
+ *
  * Any object is valid unless it's required and the <code>node</code> value is null.
  *
  * @see <a href="http://tools.ietf.org/html/draft-zyp-json-schema-03#section-5.1">type</a>

@@ -2,6 +2,7 @@
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  * 
  * Copyright © 2011-2013 ForgeRock AS. All rights reserved.
+ * Portions Copyright © 2017 Wren Security.
  * 
  * The contents of this file are subject to the terms
  * of the Common Development and Distribution License
@@ -50,7 +51,7 @@ public class SchemaException extends JsonValueException {
 
     /**
      * Create a new SchemaException wrapping an existing exception.
-     * <p/>
+     *
      * <p>The existing exception will be embedded in the new
      * one, and its message will become the default message for
      * the SchemaException.</p>
@@ -66,7 +67,7 @@ public class SchemaException extends JsonValueException {
 
     /**
      * Create a new SchemaException from an existing exception.
-     * <p/>
+     *
      * <p>The existing exception will be embedded in the new
      * one, but the new exception will have its own message.</p>
      *
@@ -81,7 +82,7 @@ public class SchemaException extends JsonValueException {
 
     /**
      * Return a detail message for this exception.
-     * <p/>
+     *
      * <p>If there is an embedded exception, and if the SchemaException
      * has no detail message of its own, this method will return
      * the detail message from the embedded exception.</p>

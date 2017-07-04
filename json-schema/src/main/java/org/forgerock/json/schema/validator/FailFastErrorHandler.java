@@ -2,6 +2,7 @@
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
  * Copyright © 2011-2013 ForgeRock AS. All rights reserved.
+ * Portions Copyright © 2017 Wren Security.
  *
  * The contents of this file are subject to the terms
  * of the Common Development and Distribution License
@@ -30,8 +31,8 @@ import org.forgerock.json.schema.validator.exceptions.ValidationException;
 /**
  * FailFastErrorHandler implements the {@link ErrorHandler} in a way it re-throws the exception
  * at first time.
- * <p/>
- * The exception prevents the validator to continue the validation of an already invalid object.
+ *
+ * <p>The exception prevents the validator to continue the validation of an already invalid object.
  */
 public class FailFastErrorHandler extends ErrorHandler {
 

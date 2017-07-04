@@ -12,16 +12,14 @@
  * information: "Portions copyright [year] [name of copyright owner]".
  *
  * Copyright 2012 ForgeRock AS.
+ * Portions Copyright 2017 Wren Security.
  */
 package org.forgerock.json.resource;
-
 
 /**
  * A registry of internal connections.
  * <p>
- * When request handler implementations perform internal operations they obtain
- * an internal connection using {@link ServerContext#getConnection()}. Server
- * contexts may be persisted to long term storage and so cannot store a direct
+ * Server contexts may be persisted to long term storage and so cannot store a direct
  * reference to an internal connection, since a {@code Connection} cannot be
  * serialized to JSON. Instead, they store the handle, or connection ID, of the
  * internal connection. This connection ID is used as a key for obtaining the

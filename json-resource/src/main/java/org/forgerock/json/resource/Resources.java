@@ -12,6 +12,7 @@
  * information: "Portions copyright [year] [name of copyright owner]".
  *
  * Copyright 2012-2014 ForgeRock AS.
+ * Portions Copyright © 2017 Wren Security.
  */
 package org.forgerock.json.resource;
 
@@ -758,7 +759,7 @@ public final class Resources {
      *            The result object of the Future.
      * @return The new {@link FutureResult} which holds the object passed in.
      * @deprecated This method will be removed once
-     *             {@link org.forgerock.util.promise.Promise} support is added.
+     *             {@code org.forgerock.util.promise.Promise} support is added.
      */
     @Deprecated
     public static <T> FutureResult<T> newCompletedFutureResult(T object) {

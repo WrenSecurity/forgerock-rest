@@ -12,6 +12,7 @@
  * information: "Portions Copyrighted [year] [name of copyright owner]".
  *
  * Copyright © 2014 ForgeRock AS. All rights reserved.
+ * Portions Copyright © 2017 Wren Security.
  */
 
 package org.forgerock.json.resource;
@@ -32,7 +33,6 @@ import org.forgerock.json.fluent.JsonValue;
  * <li>a <b>public</b> method having the same declaration as
  * {@link org.forgerock.json.resource.Context#toJsonValue()}.</li>
  * </ul>
- * <p>
  */
 public interface Context {
     /**

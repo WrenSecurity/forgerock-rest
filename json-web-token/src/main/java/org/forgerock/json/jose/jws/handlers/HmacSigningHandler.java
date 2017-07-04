@@ -12,8 +12,8 @@
  * information: "Portions copyright [year] [name of copyright owner]".
  *
  * Copyright 2013-2014 ForgeRock AS.
+ * Portions Copyright 2017 Wren Security.
  */
-
 package org.forgerock.json.jose.jws.handlers;
 
 import org.forgerock.json.jose.exceptions.JwsSigningException;
@@ -79,8 +79,9 @@ public class HmacSigningHandler implements SigningHandler {
 
     /**
      * Verifies that the given signature is valid for the given data.
+     *
      * <p>
-     * Uses the Java Cryptographic algorithm defined by the JwsAlgorithm and private key to create a new signature
+     * Uses the Java Cryptographic algorithm defined by the JwsAlgorithm to create a new signature
      * of the data to compare against the given signature to see if they are identical.
      *
      * This implementation avoids timing attacks by enforcing checking of each element of the
@@ -88,7 +89,6 @@ public class HmacSigningHandler implements SigningHandler {
      * may return early upon discovering a mistake.
      *
      * @param algorithm The JwsAlgorithm defining the JavaCryptographic algorithm.
-     * @param privateKey The private key.
      * @param data The data that was signed.
      * @param signature The signature of the data.
      * @return <code>true</code> if the signature is a valid signature of the data.

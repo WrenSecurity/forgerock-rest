@@ -2,6 +2,7 @@
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  * 
  * Copyright © 2011-2013 ForgeRock AS. All rights reserved.
+ * Portions Copyright © 2017 Wren Security.
  * 
  * The contents of this file are subject to the terms
  * of the Common Development and Distribution License
@@ -41,9 +42,10 @@ import static org.forgerock.json.schema.validator.Constants.*;
 
 /**
  * StringTypeValidator applies all the constraints of a <code>string</code> type.
- * <p/>
- * Sample JSON Schema:
- * </code>
+ *
+ * <p>Sample JSON Schema:
+ *
+ * {@code
  * {
  * "type"        : "string",
  * "required"    : true,
@@ -58,7 +60,7 @@ import static org.forgerock.json.schema.validator.Constants.*;
  * "pattern-fix" : ".*",
  * "format-fix"  : "date"
  * }
- * </code>
+ * }
  *
  * @see <a href="http://tools.ietf.org/html/draft-zyp-json-schema-03#section-5.1">type</a>
  */

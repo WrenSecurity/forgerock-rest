@@ -2,6 +2,7 @@
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
  * Copyright © 2011 ForgeRock AS. All rights reserved.
+ * Portions Copyright © 2017 Wren Security.
  *
  * The contents of this file are subject to the terms
  * of the Common Development and Distribution License
@@ -24,8 +25,8 @@
  */
 /**
  * These classes are capable of helping the validators to check certain constraints.
- * <p/>
- * The <a href="http://tools.ietf.org/html/draft-zyp-json-schema-03>schema</a> definition
+ *
+ * <p>The <a href="http://tools.ietf.org/html/draft-zyp-json-schema-03">schema</a> definition
  * uses multiple constraints but most of them are type specific. These are the common ones.
  */
 package org.forgerock.json.schema.validator.helpers;

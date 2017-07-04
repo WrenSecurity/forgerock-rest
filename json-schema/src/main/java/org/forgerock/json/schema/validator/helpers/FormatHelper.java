@@ -2,6 +2,7 @@
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  * 
  * Copyright © 2011 ForgeRock AS. All rights reserved.
+ * Portions Copyright © 2017 Wren Security.
  * 
  * The contents of this file are subject to the terms
  * of the Common Development and Distribution License
@@ -35,8 +36,8 @@ import static org.forgerock.json.schema.validator.Constants.FORMAT_DATE_TIME;
 /**
  * This class implements "format" validation on primitive types of objects as defined in
  * the paragraph 5.23 of the JSON Schema specification.
- * <p/>
- * Additional custom formats MAY be created.  These custom formats MAY
+ *
+ * <p>Additional custom formats MAY be created.  These custom formats MAY
  * be expressed as an URI, and this URI MAY reference a schema of that
  * format.
  *

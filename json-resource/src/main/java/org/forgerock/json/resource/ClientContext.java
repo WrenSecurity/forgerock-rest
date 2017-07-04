@@ -12,12 +12,12 @@
  * information: "Portions copyright [year] [name of copyright owner]".
  *
  * Copyright 2014 ForgeRock AS.
+ * Portions Copyright 2017 Wren Security.
  */
 package org.forgerock.json.resource;
 
 /**
- * A Context to establish the source of a client request through the use of one
- * or more {@link Protocol} objects.
+ * A Context to establish the source of a client request.
  */
 public interface ClientContext extends Context {
 

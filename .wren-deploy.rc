@@ -1,0 +1,14 @@
+export MAVEN_PACKAGE="forgerock-rest"
+export BINTRAY_PACKAGE="wrensec-rest"
+export JFROG_PACKAGE="org/forgerock/commons/forgerock-rest"
+
+package_accept_release_tag() {
+  local tag_name="${1}"
+
+  if [ "${tag_name}" == "2.0.0-Xpress2" ]; then
+    echo "Skipping 2.0.0-Xpress2 since it does not look official."
+    return -1
+  else
+    return 0
+  fi
+}
